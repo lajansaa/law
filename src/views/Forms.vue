@@ -32,7 +32,7 @@ export default {
       <v-stepper-items>
         <v-stepper-content step="1">
           <v-form ref="section1" lazy-validation>
-            <v-header>Your Details</v-header>
+            <h3>Your Details</h3>
             <v-container fluid>
               
               <v-layout row wrap>
@@ -111,7 +111,7 @@ export default {
               </v-layout>
             </v-container>
 
-            <v-header>Spouse's Details</v-header>
+            <h3>Spouse's Details</h3>
             <v-container fluid>
               
               <v-layout row wrap>
@@ -309,11 +309,22 @@ export default {
 
           <v-btn
             color="primary"
-            @click="submit"
+            dark
+            @click="checkValid('submit')"
           >
             Submit
           </v-btn>
           <v-btn @click="checkValid('backward')">Back</v-btn>
+          <v-alert
+            v-model="dialog"
+            dismissible
+            color="error"
+            icon="warning"
+            transition="scale-transition"
+            outline
+          >
+            Please fill in all required fields.
+          </v-alert>
         </v-stepper-content>
 
       </v-stepper-items>
@@ -323,6 +334,7 @@ export default {
 
 <script>
 import axios from 'axios'
+import db from '../firebaseInit'
 
 export default {
   name: 'forms',
@@ -356,31 +368,70 @@ export default {
       registrationAddress: '',
       section3: null,
       childrenQuantity: null,
-      childrenQuantityOptions: [ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20']
+      childrenQuantityOptions: [ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20'],
+      dialog: false
     }),
     methods: {
       submit () {
-        if (this.$refs.form.validate()) {
-          // Native form submission is not yet supported
-          axios.post('/api/submit', {
-            name: this.name,
-            email: this.email,
-            select: this.select,
-            checkbox: this.checkbox
+        if (this.section3 == true) {
+          const casesRef = db.database().ref('cases')
+          const newCaseRef = casesRef.push();
+          newCaseRef.set({
+            client: {
+              firstName: this.firstName,
+              lastName: this.lastName,
+              gender: this.gender,
+              country: this.country,
+              identificationNumber: this.identificationNumber,
+              address: this.address
+            },
+            spouse: {
+              firstName: this.spouseFirstName,
+              lastName: this.spouseLastName,
+              gender: this.spouseGender,
+              country: this.spouseCountry,
+              identificationNumber: this.spouseIdentificationNumber,
+              address: this.spouseAddress
+            },
+            marriage: {
+              marriageDate: this.marriageDate,
+              registrationDate: this.registrationDate,
+              marriageAddress: this.marriageAddress,
+              registrationAddress: this.registrationAddress
+            },
+            children: {
+              childrenQuantity: this.childrenQuantity
+            }
           })
+          this.resetForm()
+        } else {
+          this.dialog = true
         }
+      },
+      resetForm () {
+        this.e1 = 1
+        this.section1 = null
+        this.section2 = null
+        this.section3 = null
+        this.$refs.section1.reset()
+        this.$refs.section2.reset()
+        this.$refs.section3.reset()
       },
       checkValid (direction) {
         const currentSection = 'section' + this.e1;
-        if (this.$refs[currentSection].validate()) {
+         if (this.$refs[currentSection].validate()) {
           this[currentSection] = true
         } else {
           this[currentSection] = false
         }
         if (direction === 'forward') {
           this.e1++
-        } else {
+        }
+        if (direction === 'backward') {
           this.e1--
+        }
+        if (direction === 'submit') {
+          this.submit()
         }
       }
     }
