@@ -39,6 +39,17 @@
             <span>Forms</span>
         </v-tooltip>
 
+        <v-tooltip bottom>
+            <v-btn
+                slot="activator"
+                to="/dashboard"
+                icon
+            >
+                <v-icon>dashboard</v-icon>
+            </v-btn>
+            <span>Dashboard</span>
+        </v-tooltip>
+
         <v-btn icon>
             <v-icon>more_vert</v-icon>
         </v-btn>

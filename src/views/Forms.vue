@@ -373,7 +373,7 @@ export default {
     }),
     methods: {
       submit () {
-        if (this.section3 == true) {
+        if (this.section1 == true && this.section2 == true && this.section3 == true) {
           const casesRef = db.database().ref('cases')
           const newCaseRef = casesRef.push();
           newCaseRef.set({
@@ -401,9 +401,11 @@ export default {
             },
             children: {
               childrenQuantity: this.childrenQuantity
-            }
+            },
+            createdAt: new Date() + ''
           })
           this.resetForm()
+          this.$router.push("/dashboard")
         } else {
           this.dialog = true
         }
