@@ -302,6 +302,7 @@ export default {
 
         <v-stepper-content step="3">
           <v-form ref="form" lazy-validation>
+
             <v-container fluid>
                 <v-layout row wrap>
                     <v-flex xs12 sm6 md3>
@@ -314,28 +315,90 @@ export default {
                         ></v-select>
                     </v-flex>
                 </v-layout>
-                <v-layout
-                    v-if="childrenQuantity > 0"
-                    row
-                    wrap
-                >
-                    <v-flex xs12 sm6 md3>
-                    <v-text-field
-                    v-model="firstName"
-                    :rules="nameRules"
-                    label="First Name"
+              </v-container>
+
+              <v-container
+                v-if="parseInt(childrenQuantity) > 0"
+                v-for="n in parseInt(childrenQuantity)"
+                fluid
+              >
+                <v-header>Child {{n}} Details</v-header>
+            <v-layout row wrap>
+                <v-flex xs12 sm6 md3>
+                  <v-text-field
+                  v-model="spouseFirstName"
+                  :rules="nameRules"
+                  label="First Name"
+                  required
+                  ></v-text-field>
+                </v-flex>
+                <v-flex xs12 sm6 md3>
+                  <v-text-field
+                  v-model="spouseLastName"
+                  :rules="nameRules"
+                  label="Last Name"
+                  required
+                  ></v-text-field>
+                </v-flex>
+              </v-layout>
+
+              <v-subheader class="pa-0">Gender</v-subheader>
+              <v-radio-group v-model="spouseGender" row>
+                <v-flex xs2>
+                  <v-radio
+                    label="Female"
+                    value="female"
+                    color="primary"
+                  ></v-radio>
+                </v-flex>
+                <v-flex xs2>
+                  <v-radio
+                    label="Male"
+                    value="male"
+                    color="primary"
+                  ></v-radio>
+                </v-flex>
+              </v-radio-group>
+
+              <v-layout row wrap>
+                <v-flex xs12 sm6 md3>
+                  <v-autocomplete
+                    v-model="spouseCountry"
+                    :items="countryOptions"
+                    :rules="[v => !!v || 'Country is required']"
+                    label="Country"
                     required
-                    ></v-text-field>
-                    </v-flex>
-                    <v-flex xs12 sm6 md3>
-                    <v-text-field
-                    v-model="lastName"
-                    :rules="nameRules"
-                    label="Last Name"
+                  >
+                    <v-slide-x-reverse-transition
+                      mode="out-in"
+                      slot="append-outer"
+                    ></v-slide-x-reverse-transition>
+                  </v-autocomplete>
+                </v-flex>
+              </v-layout>
+
+              <v-layout row wrap>
+                <v-flex xs12 sm6 md3>
+                  <v-text-field
+                    v-model="spouseIdentificationNumber"
+                    :rules="[v => !!v || 'Passport No./NRIC is required']"
+                    label="Passport No./NRIC"
                     required
-                    ></v-text-field>
-                    </v-flex>
-                </v-layout>
+                  ></v-text-field>
+                </v-flex>
+              </v-layout>
+
+              <v-layout row wrap>
+                <v-flex xs12 sm6 md3>
+                  <v-text-field
+                    v-model="spouseAddress"
+                    :rules="[v => !!v || 'Address is required']"
+                    label="Address"
+                    required
+                  ></v-text-field>
+                </v-flex>
+              </v-layout>
+
             </v-container>
         </v-form>
 
@@ -347,22 +410,6 @@ export default {
             Continue
           </v-btn>
           <v-btn @click="e1 = 2">Back</v-btn>
-
-          <v-form
-            v-if="showChildrenInfo"
-            v-model="showChildrenInfo"
-            ref="form"
-            lazy-validation
-            >
-            <v-text-field
-              v-model="name"
-              :rules="nameRules"
-              :counter="10"
-              label="Name"
-              required
-            ></v-text-field>
-          </v-form>
-
         </v-stepper-content>
 
         <v-stepper-content step="4">
@@ -464,10 +511,9 @@ export default {
       marriageAddress: '',
       registrationAddress: '',
       e1: 0,
-      childrenQuantity: null,
-      childrenQuantityOptions: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+      childrenQuantity: '0',
+      childrenQuantityOptions: [ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20']
     }),
-
     methods: {
       submit () {
         if (this.$refs.form.validate()) {
@@ -481,15 +527,15 @@ export default {
         }
       },
       checkChildrenQuantity () {
-        if (this.e1 === 3) {
-          if (this.childrenQuantity === 0) {
-            this.e1 = 5
+        if (this.e1 == '3') {
+          if (this.childrenQuantity == '0') {
+            this.e1 = 6
           } else {
             this.e1 = 4
           }
         } 
-        if (this.e1 === 5) {
-          if (this.childrenQuantity === 0) {
+        if (this.e1 == '5') {
+          if (this.childrenQuantity == '0') {
             this.e1 = 3
           } else {
             this.e1 = 4
