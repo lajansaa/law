@@ -16,9 +16,10 @@
             buttonLabel="Submitted"
             :data= "props.item"
           />
-          <div>
-            <v-btn small color="primary" @click="generateContract(props.item)">Contract</v-btn>
-          </div>
+          <ContractTemplate
+            buttonLabel="Contract"
+            :data= "props.item"
+          />
         </td>
       </template>
     </v-data-table>
@@ -28,11 +29,13 @@
 <script>
 import db from '../firebaseInit'
 import SubmittedForm from '../components/SubmittedForm'
+import ContractTemplate from '../components/ContractTemplate'
 
 export default {
   name: 'dashboard',
   components: {
-      SubmittedForm
+      SubmittedForm,
+      ContractTemplate
   },
   data: () => ({
       dialog: false,

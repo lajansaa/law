@@ -8,7 +8,7 @@
           <v-btn icon dark @click.native="dialog = false">
             <v-icon>close</v-icon>
           </v-btn>
-          <v-toolbar-title>Settings</v-toolbar-title>
+          <v-toolbar-title>Submitted Case</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-toolbar-items>
             <v-btn dark flat @click.native="dialog = false">Save</v-btn>
@@ -16,7 +16,6 @@
         </v-toolbar>
 
         <v-container fluid>
-          <h1>Submitted Case</h1>
           <h3 class="my-3" style="textDecoration: underline;">Client Details</h3>
           <p class="ml-3" v-for="(value, key) in data.client"><b>{{prettify(key)}}</b>: {{value}}</p>
 
