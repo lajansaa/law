@@ -5,6 +5,7 @@
       :headers="headers"
       :items="cases"
       class="elevation-1"
+      :no-data-text="noDataText"
     >
       <template slot="items" slot-scope="props">
         <td class="text-xs-center">{{ props.item.client.firstName }} {{ props.item.client.lastName }}</td>
@@ -39,6 +40,7 @@ export default {
   },
   data: () => ({
       dialog: false,
+      noDataText: "Loading...",
       headers: [
         { text: 'Client Name', value: 'clientName', align: 'center' },
         { text: 'Contact Number', value: 'contactNumber', align: 'center' },
@@ -51,9 +53,13 @@ export default {
     created () {
       const casesRef = db.database().ref('cases')
       casesRef.orderByKey().on("value", (data) => {
-          const dataObj = data.val()
-          const dataKey = Object.keys(dataObj)
-          this.cases = dataKey.map((e) => dataObj[e])
+          if (data === null) {
+            this.noDataText = 'No Data Available'
+          } else {
+            const dataObj = data.val()
+            const dataKey = Object.keys(dataObj)
+            this.cases = dataKey.map((e) => dataObj[e])
+          }
       })
     },
     methods: {
