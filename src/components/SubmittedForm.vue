@@ -8,22 +8,22 @@
           <v-btn icon dark @click.native="dialog = false">
             <v-icon>close</v-icon>
           </v-btn>
-          <v-toolbar-title>Submitted Case</v-toolbar-title>
+          <v-toolbar-title>Submitted Form</v-toolbar-title>
           <v-spacer></v-spacer>
         </v-toolbar>
 
         <v-container fluid>
           <h3 class="my-3" style="textDecoration: underline;">Client Details</h3>
-          <p class="ml-3" v-for="(value, key, index) in data.client" :key="client-index" ><b>{{prettify(key)}}</b>: {{value}}</p>
+          <p class="ml-3" v-for="(value, key, index) in data.client" :key="'client-' + index"><b>{{prettify(key)}}</b>: {{value}}</p>
 
           <h3 class="my-3" style="textDecoration: underline;">Spouse Details</h3>
-          <p class="ml-3" v-for="(value, key, index) in data.spouse" :key="spouse-index"><b>{{prettify(key)}}</b>: {{value}}</p>
+          <p class="ml-3" v-for="(value, key, index) in data.spouse" :key="'spouse-' + index"><b>{{prettify(key)}}</b>: {{value}}</p>
 
           <h3 class="my-3" style="textDecoration: underline;">Marriage Details</h3>
-          <p class="ml-3" v-for="(value, key, index) in data.marriage" :key="marriage-index"><b>{{prettify(key)}}</b>: {{value}}</p>
+          <p class="ml-3" v-for="(value, key, index) in data.marriage" :key="'marriage-' + index"><b>{{prettify(key)}}</b>: {{value}}</p>
 
           <h3 class="my-3" style="textDecoration: underline;">Children Details</h3>
-          <p class="ml-3" v-for="(value, key, index) in data.children" :key="children-index"><b>{{prettify(key)}}</b>: {{value}}</p>
+          <p class="ml-3" v-for="(value, key, index) in data.children" :key="'children-' + index"><b>{{prettify(key)}}</b>: {{value}}</p>
         </v-container>
 
       </v-card>
