@@ -11,8 +11,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'clients',
-      component: Clients
+      name: 'dashboard',
+      component: Dashboard
     },
     {
       path: '/admin',

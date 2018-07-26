@@ -10,9 +10,6 @@
           </v-btn>
           <v-toolbar-title>Submitted Case</v-toolbar-title>
           <v-spacer></v-spacer>
-          <v-toolbar-items>
-            <v-btn dark flat @click.native="dialog = false">Save</v-btn>
-          </v-toolbar-items>
         </v-toolbar>
 
         <v-container fluid>
