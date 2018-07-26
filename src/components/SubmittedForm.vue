@@ -14,16 +14,16 @@
 
         <v-container fluid>
           <h3 class="my-3" style="textDecoration: underline;">Client Details</h3>
-          <p class="ml-3" v-for="(value, key) in data.client"><b>{{prettify(key)}}</b>: {{value}}</p>
+          <p class="ml-3" v-for="(value, key, index) in data.client" :key="client-index" ><b>{{prettify(key)}}</b>: {{value}}</p>
 
           <h3 class="my-3" style="textDecoration: underline;">Spouse Details</h3>
-          <p class="ml-3" v-for="(value, key) in data.spouse"><b>{{prettify(key)}}</b>: {{value}}</p>
+          <p class="ml-3" v-for="(value, key, index) in data.spouse" :key="spouse-index"><b>{{prettify(key)}}</b>: {{value}}</p>
 
           <h3 class="my-3" style="textDecoration: underline;">Marriage Details</h3>
-          <p class="ml-3" v-for="(value, key) in data.marriage"><b>{{prettify(key)}}</b>: {{value}}</p>
+          <p class="ml-3" v-for="(value, key, index) in data.marriage" :key="marriage-index"><b>{{prettify(key)}}</b>: {{value}}</p>
 
           <h3 class="my-3" style="textDecoration: underline;">Children Details</h3>
-          <p class="ml-3" v-for="(value, key) in data.children"><b>{{prettify(key)}}</b>: {{value}}</p>
+          <p class="ml-3" v-for="(value, key, index) in data.children" :key="children-index"><b>{{prettify(key)}}</b>: {{value}}</p>
         </v-container>
 
       </v-card>
