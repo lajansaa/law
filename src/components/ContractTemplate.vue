@@ -17,16 +17,17 @@
 
         <v-container fluid id="contract">
           <pre class="page">
-Draft for Approval: __________________________        __________________________ 
-                    Mr JASON ANG                      {{ data.spouse.lastName.toUpperCase() }} {{ data.spouse.firstName.toUpperCase() }}
-                    Solicitor for the Plaintiff       Defendant-in-person
+Draft for Approval: __________________________    __________________________ 
+                    Mr JASON ANG                  {{ data.spouse.lastName.toUpperCase() }} {{ data.spouse.firstName.toUpperCase() }}
+                    Solicitor for the Plaintiff   Defendant-in-person
 
 
-                                                    Before me
+                                                  Before me
 
 
-                                                    __________________________ 
-                                                    A Commissioner for Oaths
+                                                  __________________________ 
+                                                  A Commissioner for Oaths
+
 <div style="textAlign: center;">
 <b style="textDecoration: underline;">IN THE FAMILY JUSTINCE COURTS OF THE REPUBLIC OF SINGAPORE</b>
 </div>
@@ -34,15 +35,15 @@ Draft for Approval: __________________________        __________________________
 Divorce Suit No.	)
 FC/D of {{ new Date().getFullYear() }}		)
 
-                                        Between
+                                  Between
 
-                                        {{ data.client.lastName.toUpperCase() }} {{ data.client.firstName.toUpperCase() }}
-                                        (Identification No. {{ data.client.identificationNumber }}) … Plaintiff
+                                  {{ data.client.lastName.toUpperCase() }} {{ data.client.firstName.toUpperCase() }}
+                                  (Identification No. {{ data.client.identificationNumber }}) … Plaintiff
 
-                                        And
+                                  And
 
-                                        {{ data.spouse.lastName.toUpperCase() }} {{ data.spouse.firstName.toUpperCase() }}
-                                        (Identification No. {{ data.spouse.identificationNumber }}) … Defendant
+                                  {{ data.spouse.lastName.toUpperCase() }} {{ data.spouse.firstName.toUpperCase() }}
+                                  (Identification No. {{ data.spouse.identificationNumber }}) … Defendant
 <div style="textAlign: center;">
 <b style="textDecoration: underline;">DRAFT CONSENT ORDER</b>
 </div>
@@ -53,7 +54,7 @@ FC/D of {{ new Date().getFullYear() }}		)
 </pre>
 <pre class="page">
    (b) Date and place of registration of marriage
-   {{ data.marriage.registrationDate }} at {{ data.marriage.registrationAddress }}
+       {{ data.marriage.registrationDate }} at {{ data.marriage.registrationAddress }}
 
 2. Interim Judgement Granted in Chambers
    (a) Parties present:
@@ -154,10 +155,10 @@ pre {
     border-radius: 5px;
     background: white;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    font-size: 16px;
+    font-size: 14px;
     /* twice of font-size */
     line-height: 32px;
-    font-family: 'Times New Roman', Times, serif;
+    /* font-family: 'Times New Roman', Times, serif; */
 }
 
 </style>
