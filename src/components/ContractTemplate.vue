@@ -15,7 +15,7 @@
           </v-toolbar-items>
         </v-toolbar>
 
-        <v-container fluid id="contract">
+        <v-container fluid :id="'contract' + data.id">
           <pre class="page">
 Draft for Approval: __________________________    __________________________ 
                     Mr JASON ANG                  {{ data.spouse.lastName.toUpperCase() }} {{ data.spouse.firstName.toUpperCase() }}
@@ -127,7 +127,7 @@ export default {
       },
       downloadContract () {
           let element = document.createElement('a');
-          let contractContent = document.getElementById("contract").innerText;
+          let contractContent = document.getElementById("contract" + this.data.id).innerText;
           element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(contractContent));
           element.setAttribute('download', 'contract');
   

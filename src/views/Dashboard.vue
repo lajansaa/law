@@ -58,7 +58,12 @@ export default {
           } else {
             const dataObj = data.val()
             const dataKey = Object.keys(dataObj)
-            this.cases = dataKey.map((e) => dataObj[e])
+            this.cases = dataKey.map((e) => {
+              let obj = dataObj[e]
+              // add unique id to obj
+              obj["id"] = e
+              return obj
+            })
           }
       })
     },
